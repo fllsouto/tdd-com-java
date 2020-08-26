@@ -11,7 +11,7 @@ import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Usuario;
 import br.com.caelum.leilao.servico.FiltroDeLances;
 
-public class FiltroDeLancesTest {
+public class TesteDoFiltroDeLances {
 	
 	// ]500 ---- 700 [ ]1000 ---- 3000[ ] 5000 ---
 

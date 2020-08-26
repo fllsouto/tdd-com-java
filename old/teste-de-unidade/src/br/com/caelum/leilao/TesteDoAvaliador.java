@@ -118,8 +118,8 @@ public class TesteDoAvaliador {
 		Avaliador leiloeiro = new Avaliador();
 		leiloeiro.avalia(leilao);
 		
-		assertEquals(1000.0, leiloeiro.getMenorLance(), 0.00001);
-		assertEquals(1000., leiloeiro.getMaiorLance(), 0.00001);
+		assertEquals(1000.00, leiloeiro.getMenorLance(), 0.00001);
+		assertEquals(1000.00, leiloeiro.getMaiorLance(), 0.00001);
 	}
 	
 	@Test
@@ -140,10 +140,10 @@ public class TesteDoAvaliador {
 		List<Lance> maiores = leiloeiro.getTresMaiores();
 		
 		
-		assertEquals(maiores.size(), 3);
-		assertEquals(maiores.get(0).getValor(), 400.00, 0.00001);
-		assertEquals(maiores.get(1).getValor(), 300.00, 0.00001);
-		assertEquals(maiores.get(2).getValor(), 200.00, 0.00001);
+		assertEquals(3, maiores.size());
+		assertEquals(400.00, maiores.get(0).getValor(), 0.00001);
+		assertEquals(300.00, maiores.get(1).getValor(), 0.00001);
+		assertEquals(200.00, maiores.get(2).getValor(), 0.00001);
 	}
 	
 	@Test
@@ -182,9 +182,9 @@ public class TesteDoAvaliador {
 		List<Lance> maiores = leiloeiro.getTresMaiores();
 		
 		
-		assertEquals(maiores.size(), 2);
-		assertEquals(maiores.get(0).getValor(), 400.00, 0.00001);
-		assertEquals(maiores.get(1).getValor(), 250.00, 0.00001);
+		assertEquals(2, maiores.size());
+		assertEquals(400.00, maiores.get(0).getValor(), 0.00001);
+		assertEquals(250.00, maiores.get(1).getValor(), 0.00001);
 	}
 	
 	@Test
@@ -200,8 +200,8 @@ public class TesteDoAvaliador {
 		
 		List<Lance> maiores = leiloeiro.getTresMaiores();
 				
-		assertEquals(maiores.size(), 1);
-		assertEquals(maiores.get(0).getValor(), 250.00, 0.00001);
+		assertEquals(1, maiores.size());
+		assertEquals(250.00, maiores.get(0).getValor(), 0.00001);
 	}
 	
 	@Test
@@ -213,7 +213,6 @@ public class TesteDoAvaliador {
 		
 		List<Lance> maiores = leiloeiro.getTresMaiores();
 		
-		assertEquals(maiores.size(), 0);
+		assertEquals(0, maiores.size());
 	}
-
 }
