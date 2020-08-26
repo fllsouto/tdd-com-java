@@ -9,7 +9,6 @@ import org.junit.Test;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
-import br.com.caelum.leilao.servico.Avaliador;
 
 public class TesteDoLeilao {
 	
@@ -89,8 +88,61 @@ public class TesteDoLeilao {
 		List<Lance> lances = leilao.getLances();
 		
 		assertEquals(10, lances.size());
-		assertEquals(10000.00, lances.get(lances.size() - 1).getValor(), 0.00001);
+		assertEquals(10000.00, ultimoLance(lances), 0.00001);
 
+	}
+	
+	@Test
+	public void devePermitirDobrarOLanceBaseadoNoUltimoLance() {
+		Usuario jobs = new Usuario("Steve Jobs");
+		Usuario wozniack = new Usuario("Steve Wozniack");
+		
+		Leilao leilao = new Leilao("Macbook Pro");
+		
+		leilao.propoe(new Lance(jobs, 1000.00));
+		leilao.propoe(new Lance(wozniack, 2000.00));
+		
+		leilao.propoe(new Lance(jobs, 3000.00));
+		leilao.propoe(new Lance(wozniack, 4000.00));
+		
+		leilao.dobraLance(jobs);
+		
+		List<Lance> lances = leilao.getLances();
+		assertEquals(5, lances.size());
+		assertEquals(6000.00, ultimoLance(lances), 0.00001);
+	}
+	
+	@Test
+	public void naoDeveDobrarLanceDeListaVazia() {
+		Usuario jobs = new Usuario("Steve Jobs");
+		
+		Leilao leilao = new Leilao("Macbook Pro");
+		
+		leilao.dobraLance(jobs);
+		
+		List<Lance> lances = leilao.getLances();
+		
+		assertEquals(0, lances.size());
+	}
+
+	@Test
+	public void naoDeveDobrarLanceDeUsuarioQueNaoDeuLances() {
+		Usuario jobs = new Usuario("Steve Jobs");
+		Usuario wozniack = new Usuario("Steve Wozniack");
+		
+		Leilao leilao = new Leilao("Macbook Pro");		
+		leilao.propoe(new Lance(wozniack, 2000.00));
+		
+		leilao.dobraLance(jobs);
+		
+		List<Lance> lances = leilao.getLances();
+		
+		assertEquals(1, lances.size());
+		assertEquals(2000.00, lances.get(0).getValor(), 0.00001);
+	}
+
+	private double ultimoLance(List<Lance> lances) {
+		return lances.get(lances.size() - 1).getValor();
 	}
 
 }
