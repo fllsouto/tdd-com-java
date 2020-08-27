@@ -16,7 +16,7 @@ public class Leilao {
 	}
 	
 	public void propoe(Lance lance) {
-
+		
 		if (lances.isEmpty() || podeDarLance(lance.getUsuario()))
 			lances.add(lance);
 	}

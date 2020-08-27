@@ -1,11 +1,15 @@
 package br.com.caelum.leilao;
 
+import static br.com.caelum.leilao.matcher.LeilaoMatcher.temUmLance;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 import org.junit.Test;
 
+import br.com.caelum.leilao.builder.CriadorDeLeilao;
 import br.com.caelum.leilao.dominio.Lance;
 import br.com.caelum.leilao.dominio.Leilao;
 import br.com.caelum.leilao.dominio.Usuario;
@@ -14,15 +18,14 @@ public class TesteDoLeilao {
 	
 	@Test
 	public void deveReceberUmLance() {
-		Usuario jobs = new Usuario("Steve Jobs");
+		Leilao leilao = new CriadorDeLeilao().para("Macbook Pro").constroi();
+		assertThat(leilao.getLances().size(), equalTo(0));
 		
-		Leilao leilao = new Leilao("Macbook Pro");
+		Lance lance = new Lance(new Usuario("Steve Jobs"), 2000.00);
+		leilao.propoe(lance);
 		
-		leilao.propoe(new Lance(jobs, 2000.00));
-		List<Lance> lances = leilao.getLances();
-		
-		assertEquals(1, lances.size());
-		assertEquals(2000.00, lances.get(0).getValor(), 0.00001);
+		assertThat(leilao.getLances().size(), equalTo(1));
+		assertThat(leilao, temUmLance(lance));
 	}
 	
 	@Test
