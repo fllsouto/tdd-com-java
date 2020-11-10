@@ -83,4 +83,25 @@ public class TestaAvaliador {
 
 		Assertions.assertEquals(menorEsperado, avaliador.getMenorLance());
 	}
+	
+	@Test
+	public void deveAvaliarLeilaoComLanceUnico() {
+		Usuario joao = new Usuario("João");
+
+		Leilao leilao = new Leilao("Playstation 4 Novo");
+
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(1000.00)));
+
+		Avaliador avaliador = new Avaliador();
+		avaliador.avalia(leilao);
+
+
+		BigDecimal menorEsperado = BigDecimal.valueOf(1000.00);
+		BigDecimal maiorEsperado = BigDecimal.valueOf(1000.00);
+
+		Assertions.assertEquals(maiorEsperado, avaliador.getMaiorLance());
+
+		Assertions.assertEquals(menorEsperado, avaliador.getMenorLance());
+	}
+
 }
