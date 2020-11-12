@@ -2,13 +2,14 @@ package br.com.alura;
 
 import java.math.BigDecimal;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import br.com.alura.dominio.Lance;
 import br.com.alura.dominio.Leilao;
 import br.com.alura.dominio.Usuario;
 import br.com.alura.servico.Avaliador;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestaAvaliador {
 	
@@ -31,9 +32,9 @@ public class TestaAvaliador {
 		BigDecimal menorEsperado = BigDecimal.valueOf(1000.00);
 		BigDecimal maiorEsperado = BigDecimal.valueOf(3000.00);
 
-		Assertions.assertEquals(maiorEsperado, avaliador.getMaiorLance());
+		assertEquals(maiorEsperado, avaliador.getMaiorLance());
 
-		Assertions.assertEquals(menorEsperado, avaliador.getMenorLance());
+		assertEquals(menorEsperado, avaliador.getMenorLance());
 	}
 	
 	@Test
@@ -55,9 +56,9 @@ public class TestaAvaliador {
 		BigDecimal menorEsperado = BigDecimal.valueOf(1000.00);
 		BigDecimal maiorEsperado = BigDecimal.valueOf(3000.00);
 
-		Assertions.assertEquals(maiorEsperado, avaliador.getMaiorLance());
+		assertEquals(maiorEsperado, avaliador.getMaiorLance());
 
-		Assertions.assertEquals(menorEsperado, avaliador.getMenorLance());
+		assertEquals(menorEsperado, avaliador.getMenorLance());
 	}
 	
 	@Test
@@ -79,9 +80,9 @@ public class TestaAvaliador {
 		BigDecimal menorEsperado = BigDecimal.valueOf(1000.00);
 		BigDecimal maiorEsperado = BigDecimal.valueOf(3000.00);
 
-		Assertions.assertEquals(maiorEsperado, avaliador.getMaiorLance());
+		assertEquals(maiorEsperado, avaliador.getMaiorLance());
 
-		Assertions.assertEquals(menorEsperado, avaliador.getMenorLance());
+		assertEquals(menorEsperado, avaliador.getMenorLance());
 	}
 	
 	@Test
@@ -99,9 +100,9 @@ public class TestaAvaliador {
 		BigDecimal menorEsperado = BigDecimal.valueOf(1000.00);
 		BigDecimal maiorEsperado = BigDecimal.valueOf(1000.00);
 
-		Assertions.assertEquals(maiorEsperado, avaliador.getMaiorLance());
+		assertEquals(maiorEsperado, avaliador.getMaiorLance());
 
-		Assertions.assertEquals(menorEsperado, avaliador.getMenorLance());
+		assertEquals(menorEsperado, avaliador.getMenorLance());
 	}
 
 }
