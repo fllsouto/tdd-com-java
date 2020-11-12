@@ -27,14 +27,7 @@ public class Avaliador {
 		}
 		
 		maiores = new ArrayList<Lance>(leilao.getLances());
-		Collections.sort(maiores, new Comparator<Lance>() {
-			public int compare(Lance o1, Lance o2) {
-				if(o1.getValor() < o2.getValor()) return 1;
-				if(o1.getValor() > o2.getValor()) return -1;
-				return 0;
-			}
-		});
-		
+		Collections.sort(maiores);
 		maiores = maiores.subList(0, 3);
 		
 	}

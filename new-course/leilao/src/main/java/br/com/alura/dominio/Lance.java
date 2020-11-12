@@ -2,7 +2,7 @@ package br.com.alura.dominio;
 
 import java.math.BigDecimal;
 
-public class Lance {
+public class Lance implements Comparable<Lance> {
 	
 	private Usuario usuario;
 	private BigDecimal valor;
@@ -17,5 +17,9 @@ public class Lance {
 	}
 	public BigDecimal getValor() {
 		return valor;
+	}
+
+	public int compareTo(Lance that) {
+		return this.compareTo(that);
 	}
 }

@@ -1,6 +1,7 @@
 package br.com.alura;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -107,19 +108,25 @@ public class TestaAvaliador {
 	
     @Test
     public void deveEncontrarOsTresMaioresLances() {
-        Usuario joao = new Usuario("João");
-        Usuario maria = new Usuario("Maria");
-        Leilao leilao = new Leilao("Playstation 3 Novo");
+		Usuario joao = new Usuario("João");
+		Usuario paulo = new Usuario("Paulo");
+		Usuario maria = new Usuario("Maria");
 
-        leilao.propoe(new Lance(joao, 100.0));
-        leilao.propoe(new Lance(maria, 200.0));
-        leilao.propoe(new Lance(joao, 300.0));
-        leilao.propoe(new Lance(maria, 400.0));
+		Leilao leilao = new Leilao("Playstation 4 Novo");
 
-        Avaliador leiloeiro = new Avaliador();
-        leiloeiro.avalia(leilao);
+		leilao.propoe(new Lance(maria, BigDecimal.valueOf(200.00)));
+		leilao.propoe(new Lance(maria, BigDecimal.valueOf(400.00)));
+		
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(300.00)));
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(600.00)));
+		
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(250.00)));
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(500.00)));
 
-        List<Lance> maiores = leiloeiro.getTresMaiores();
+		Avaliador avaliador = new Avaliador();
+		avaliador.avalia(leilao);
+
+        List<Lance> maiores = avaliador.getTresMaiores();
 
         assertEquals(3, maiores.size());
     }
