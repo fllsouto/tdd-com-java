@@ -20,6 +20,6 @@ public class Lance implements Comparable<Lance> {
 	}
 
 	public int compareTo(Lance that) {
-		return this.compareTo(that);
+		return this.valor.compareTo(that.getValor());
 	}
 }
