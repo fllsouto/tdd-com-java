@@ -28,7 +28,11 @@ public class Avaliador {
 		
 		maiores = new ArrayList<Lance>(leilao.getLances());
 		Collections.sort(maiores, Collections.reverseOrder());
-		maiores = maiores.subList(0, 3);
+
+		if (maiores.size() > 2)
+			maiores = maiores.subList(0, 3);
+		else
+			maiores = maiores.subList(0, maiores.size());
 		
 	}
 
