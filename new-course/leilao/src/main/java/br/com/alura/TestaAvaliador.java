@@ -127,8 +127,15 @@ public class TestaAvaliador {
 		avaliador.avalia(leilao);
 
         List<Lance> maiores = avaliador.getTresMaiores();
+        
+        BigDecimal primeiroMaior = BigDecimal.valueOf(600.00);
+        BigDecimal segundoMaior = BigDecimal.valueOf(500.00);
+        BigDecimal terceiroMaior = BigDecimal.valueOf(400.00);
 
         assertEquals(3, maiores.size());
+        assertEquals(primeiroMaior, maiores.get(0).getValor());
+        assertEquals(segundoMaior, maiores.get(1).getValor());
+        assertEquals(terceiroMaior, maiores.get(2).getValor());
     }
 
 }
