@@ -137,5 +137,60 @@ public class TestaAvaliador {
         assertEquals(segundoMaior, maiores.get(1).getValor());
         assertEquals(terceiroMaior, maiores.get(2).getValor());
     }
+    
+    @Test
+    public void deveEncontrarOsDoisMaioresLancesQuandoTiverApenasDoisLances() {
+		Usuario paulo = new Usuario("Paulo");
+		Usuario maria = new Usuario("Maria");
+
+		Leilao leilao = new Leilao("Playstation 4 Novo");
+
+		leilao.propoe(new Lance(maria, BigDecimal.valueOf(400.00)));
+		
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(300.00)));
+
+		Avaliador avaliador = new Avaliador();
+		avaliador.avalia(leilao);
+
+        List<Lance> maiores = avaliador.getTresMaiores();
+        
+        BigDecimal primeiroMaior = BigDecimal.valueOf(400.00);
+        BigDecimal segundoMaior = BigDecimal.valueOf(300.00);
+
+        assertEquals(2, maiores.size());
+        assertEquals(primeiroMaior, maiores.get(0).getValor());
+        assertEquals(segundoMaior, maiores.get(1).getValor());
+    }
+    
+    @Test
+    public void deveEncontrarOMaiorLanceQuandoTiverApenasUmLance() {
+		Usuario paulo = new Usuario("Paulo");
+
+		Leilao leilao = new Leilao("Playstation 4 Novo");
+		
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(300.00)));
+
+		Avaliador avaliador = new Avaliador();
+		avaliador.avalia(leilao);
+
+        List<Lance> maiores = avaliador.getTresMaiores();
+        
+        BigDecimal primeiroMaior = BigDecimal.valueOf(300.00);
+
+        assertEquals(1, maiores.size());
+        assertEquals(primeiroMaior, maiores.get(0).getValor());
+    }
+    
+    @Test
+    public void naoDeveEncontrarMaioresLanceQuandoNaoHouverNenhumLance() {
+		Leilao leilao = new Leilao("Playstation 4 Novo");
+		
+		Avaliador avaliador = new Avaliador();
+		avaliador.avalia(leilao);
+
+        List<Lance> maiores = avaliador.getTresMaiores();
+        
+        assertEquals(0, maiores.size());
+    }
 
 }
