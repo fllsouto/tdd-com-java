@@ -44,4 +44,21 @@ public class TestaLeilao {
 		assertEquals(valorDoPrimeiroLanceEsperado, leilao.getLances().get(0).getValor());
 		assertEquals(valorDoSegundoLanceEsperado, leilao.getLances().get(1).getValor());
 	}
+
+	@Test
+	public void naoDeveAceitarDoisLancesSeguidosDoMesmoUsuario() {
+		Usuario joao = new Usuario("João");
+
+		Leilao leilao = new Leilao("Macbook Pro 15");
+
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(2000.00)));
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(4000.00)));
+
+		int quantidadeDeLancesEsperado = 1;
+		BigDecimal valorDoLanceEsperado = BigDecimal.valueOf(2000.00);
+
+		assertEquals(quantidadeDeLancesEsperado, leilao.getLances().size());
+		assertEquals(valorDoLanceEsperado, leilao.getLances().get(0).getValor());
+
+	}
 }
