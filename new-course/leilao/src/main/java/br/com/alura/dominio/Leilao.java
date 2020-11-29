@@ -15,7 +15,13 @@ public class Leilao {
 	}
 
 	public void propoe(Lance lance) {
-		if (lances.isEmpty() || !ultimoLanceDado().getUsuario().equals(lance.getUsuario())) {
+		int total = 0;
+		for (Lance lanceDado : lances) {
+			if (lanceDado.getUsuario().equals(lance.getUsuario()))
+				total += 1;
+		}
+
+		if (lances.isEmpty() || (!ultimoLanceDado().getUsuario().equals(lance.getUsuario()) && total < 5)) {
 			lances.add(lance);
 
 		}

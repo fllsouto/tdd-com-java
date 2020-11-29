@@ -61,4 +61,36 @@ public class TestaLeilao {
 		assertEquals(valorDoLanceEsperado, leilao.getLances().get(0).getValor());
 
 	}
+
+	@Test
+	public void naoDeveAceitarMaisDoQue5LancesDeUmMesmoUsuario() {
+		Usuario joao = new Usuario("João");
+		Usuario paulo = new Usuario("Paulo");
+
+		Leilao leilao = new Leilao("Macbook Pro 15");
+
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(1000.00)));
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(2000.00)));
+
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(3000.00)));
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(4000.00)));
+
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(5000.00)));
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(6000.00)));
+
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(7000.00)));
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(8000.00)));
+
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(9000.00)));
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(10000.00)));
+
+		// deverá ser ignorado
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(11000.00)));
+
+		int quantidadeDeLancesEsperado = 10;
+		BigDecimal valorDoUltimoLanceEsperado = BigDecimal.valueOf(10000.00);
+
+		assertEquals(quantidadeDeLancesEsperado, leilao.getLances().size());
+		assertEquals(valorDoUltimoLanceEsperado, leilao.getLances().get(leilao.getLances().size() - 1).getValor());
+	}
 }
