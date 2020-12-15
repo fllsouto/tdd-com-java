@@ -34,5 +34,26 @@ public class TestaCalculadoraImposto {
 		
 		assertEquals(impostoCalculadoEsperado, impostoCalculadoObtido);
 	}
+	
+	@Test
+	public void deveCalcularImpostoDeEletronicosParaSegundaFaixa() {
+		Usuario joao = new Usuario("João");
+		Usuario paulo = new Usuario("Paulo");
+		Usuario maria = new Usuario("Maria");
+
+		Leilao leilao = new Leilao("Drone");
+
+		leilao.propoe(new Lance(joao, BigDecimal.valueOf(5000.00)));
+		leilao.propoe(new Lance(paulo, BigDecimal.valueOf(3000.00)));
+		leilao.propoe(new Lance(maria, BigDecimal.valueOf(7000.00)));
+		
+		CalculadoraImposto calculadora = new CalculadoraImposto();
+		
+		BigDecimal impostoCalculadoObtido = calculadora.calculaImpostoParaLances(leilao);
+		
+		BigDecimal impostoCalculadoEsperado = BigDecimal.valueOf(450.00);
+		
+		assertEquals(impostoCalculadoEsperado, impostoCalculadoObtido);
+	}
 
 }
